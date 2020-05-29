@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="fragments/header :: head"></th:block>
+<title>Insert title here</title>
+
+</head>
+<body>
+	<th:block th:include="fragments/navbar::navbar"></th:block>
+
+
+	<div class="container">
+		<form action="/eregistrar/addStudent" method="post"
+			th:object="${student}">
+			<div class="form-group">
+				<div class="row">
+
+					<input class="form-control" id="studentId" type="hidden"
+						name="studentId" th:value="${student.studentId}">
+
+
+					<div class="col-md-4">
+						<fieldset>
+							<label class="control-label" for="firstName">First Name</label> <input
+								class="form-control" id="firstName" type="text" name="firstName"
+								placeholder="" th:value="${student.firstName}">
+						</fieldset>
+					</div>
+					<div class="col-md-4">
+						<fieldset>
+							<label class="control-label" for="middleName">Middle Name</label>
+							<input class="form-control" id="middleName" name="middleName"
+								type="text" placeholder="" th:value="${student.middleName}">
+						</fieldset>
+					</div>
+					<div class="col-md-4">
+						<fieldset>
+							<label class="control-label" for="lastName">Last Name</label> <input
+								class="form-control" id="lastName" name="lastName" type="text"
+								placeholder="" th:value="${student.lastName}">
+						</fieldset>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group" style="margin-top: 30px">
+				<div class="row">
+					<div class="col-md-4">
+						<fieldset>
+							<label class="control-label" for="studentNumber">Student
+								Number</label> <input class="form-control" id="studentNumber"
+								name="studentNumber" type="text" placeholder=""
+								th:value="${student.studentNumber}">
+						</fieldset>
+					</div>
+					<div class="col-md-2">
+						<fieldset>
+							<label class="control-label" for="gpa">GPA</label> <input
+								class="form-control" id="cgpa" name="cgpa" type="number"
+								step="any" placeholder="" th:value="${student.cgpa}">
+						</fieldset>
+					</div>
+					<div class="col-md-3">
+						<fieldset>
+							<label class="control-label" for="enrollmentDate">Enrollment
+								Date</label> <input class="form-control" id="enrollmentDate"
+								name="enrollmentDate" type="date" placeholder=""
+								th:value="${student.enrollmentDate}">
+						</fieldset>
+					</div>
+					<div class="col-md-3">
+						<fieldset>
+							<label class="control-label" for="enrollmentDate">International</label>
+							<select class="custom-select"
+								th:value="${student.isInternational}" name="isInternational">
+								<option selected="">select</option>
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group" style="margin-top: 30px">
+				<div class="row" style="float: right">
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-success">Save</button>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+<th:block th:include="fragments/footer :: footer"></th:block>
+</body>
+</html>

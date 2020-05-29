@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="fragments/header :: head"></th:block>
+<title>Insert title here</title>
+
+</head>
+<body>
+	<th:block th:include="fragments/navbar::navbar"></th:block>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Student List</h3>
+			</div>
+			<div class="col-md-6">
+				<a type="button" class="btn btn-success" style="float: right"
+					href="/eregistrar/addStudent">Add Student</a>
+			</div>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Student Number</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">GPA</th>
+					<th scope="col">Enrollment Date</th>
+					<th scope="col">International</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr class="table-secondary" th:each="student, iterStat: ${students}">
+					<th th:text="${student.studentNumber}">Secondary</th>
+					<td th:text="${student.firstName}">Column content</td>
+					<td th:text="${student.lastName}">Column content</td>
+					<td th:text="${student.cgpa}">Column content</td>
+					<td th:text="${student.enrollmentDate}">Column content</td>
+					<td th:text="${student.isInternational}">Column content</td>
+					<td><a
+						th:href="@{'/eregistrar/edit/{Id}'(Id=${student.studentId})}">Edit</a></td>
+					<td><a
+						th:href="@{'/eregistrar/remove/{Id}'(Id=${student.studentId})}"
+						onClick="return confirm('Are you sure?')">Delete</a></td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div>
+
+
+
+			<ul class="pagination">
+				<li class="page-item disabled">
+				<a class="page-link" href="#">Pages:</a></li>
+				<li	th:class="${currentPage}==${i-1} ? 'page-item active' : 'page-item'"
+					th:each="i:${#numbers.sequence(1,students.totalPages)}"><a
+					class="page-link" th:href="@{/eregistrar/students(pageno=${i-1})}"
+					th:text="${i}"></a></li>
+			</ul>
+	
+	</div>
+	<th:block th:include="fragments/footer :: footer"></th:block>
+</body>
+</html>
